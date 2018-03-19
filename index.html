@@ -16,8 +16,17 @@ class Ship {
 	constructor () {
 		this.x = 0;
 		this.y = 0;
+		this.width = 30;
+		this.height = 60;
 	}
 	draw (context) {
+		context.beginPath();
+		context.moveTo(this.x, this.y);
+		context.lineTo(this.x + Math.floor(this.width / 2), this.y + this.height);
+		context.lineTo(this.x - Math.floor(this.width / 2), this.y + this.height);
+		context.closePath();
+		context.fillStyle = 'lightgray';
+		context.fill();
 	}
 }
 class Asteroids {
@@ -26,6 +35,7 @@ class Asteroids {
 		// the context is an object containing methods for drawing on the canvas
 		// it is separate from the canvas because you can also have a 3d context
 		this.context = theCanvas.getContext('2d');
+		this.ship = new Ship();
 		// calling .bind() on a function causes the function to have
 		// the given `this` value when it is run
 		// Otherwise, if we just said (this.animate),
@@ -43,6 +53,8 @@ class Asteroids {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.context.fillStyle = 'black';
 		this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+		// draw items in the game
+		this.ship.draw(this.context);
 	}
 	update () {
 	}
