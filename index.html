@@ -18,6 +18,9 @@ class Ship {
 		this.height = 60;
 		this.x = Math.floor(canvas.width / 2);
 		this.y = Math.floor(canvas.height / 2) - Math.floor(this.height / 2);
+		this.vx = 0; // pixels per ms
+		this.vy = 0; // pixels per ms
+		this.thrusting = false;
 	}
 	draw (context) {
 		context.beginPath();
@@ -27,6 +30,10 @@ class Ship {
 		context.closePath();
 		context.fillStyle = 'lightgray';
 		context.fill();
+	}
+	update (ms) {
+		this.x += this.vx * ms;
+		this.y += this.vy * ms;
 	}
 }
 class Asteroids {
@@ -57,6 +64,7 @@ class Asteroids {
 		this.ship.draw(this.context);
 	}
 	update () {
+		this.ship.update(15);
 	}
 }
 var asteroids = new Asteroids(document.getElementById('asteroids-canvas'));
