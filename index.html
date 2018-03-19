@@ -24,10 +24,11 @@ class Asteroids {
 		// then the value of `this` would just be the window itself.
 		// this.animate() <--- causes the value of `this` inside
 		var self = this;
-		requestAnimationFrame(this.animate.bind(self));
+		requestAnimationFrame(this.animate);
 	}
 	animate () {
-		
+		// would be undefined, because `this` would be the window
+		console.log(this.canvas)
 	}
 }
 var asteroids = new Asteroids(document.getElementById('asteroids-canvas'));
