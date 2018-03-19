@@ -13,11 +13,11 @@ Asteroids
 <canvas id='asteroids-canvas' width='600' height='400'></canvas>
 <script>
 class Ship {
-	constructor () {
-		this.x = 0;
-		this.y = 0;
+	constructor (canvas) {
 		this.width = 30;
 		this.height = 60;
+		this.x = Math.floor(canvas.width / 2);
+		this.y = Math.floor(canvas.height / 2) - Math.floor(this.height / 2);
 	}
 	draw (context) {
 		context.beginPath();
@@ -35,7 +35,7 @@ class Asteroids {
 		// the context is an object containing methods for drawing on the canvas
 		// it is separate from the canvas because you can also have a 3d context
 		this.context = theCanvas.getContext('2d');
-		this.ship = new Ship();
+		this.ship = new Ship(theCanvas);
 		// calling .bind() on a function causes the function to have
 		// the given `this` value when it is run
 		// Otherwise, if we just said (this.animate),
