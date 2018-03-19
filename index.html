@@ -19,7 +19,7 @@ class Ship {
 		this.x = Math.floor(canvas.width / 2);
 		this.y = Math.floor(canvas.height / 2) - Math.floor(this.height / 2);
 		this.vx = 0; // pixels per ms
-		this.vy = 0; // pixels per ms
+		this.vy = -1; // pixels per ms
 		this.thrusting = false;
 	}
 	draw (context) {
@@ -54,6 +54,7 @@ class Asteroids {
 	animate () {
 		this.update();
 		this.draw();
+		requestAnimationFrame(this.animate.bind(this));
 	}
 	draw () {
 		// clear the entire canvas
