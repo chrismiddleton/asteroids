@@ -15,6 +15,9 @@ Asteroids
 class Asteroids {
 	constructor (canvas) {
 		this.canvas = canvas;
+		// the context is an object containing methods for drawing on the canvas
+		// it is separate from the canvas because you can also have a 3d context
+		this.context = canvas.getContext('2d');
 		// calling .bind() on a function causes the function to have
 		// the given `this` value when it is run
 		// Otherwise, if we just said (this.animate),
