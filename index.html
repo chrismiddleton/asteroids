@@ -12,6 +12,23 @@ canvas {
 Asteroids
 <canvas id='asteroids-canvas' width='600' height='400'></canvas>
 <script>
+class LaserShot {
+	constructor (x, y) {
+		this.x = x;
+		this.y = y;
+		this.height = 8;
+	}
+	draw (context) {
+		context.beginPath();
+		context.moveTo(this.x, this.y);
+		context.lineTo(this.x, this.y - this.height);
+		context.strokeStyle = 'red';
+		context.stroke();
+	}
+	update (ms) {
+		this.y -= 0.05 * ms;
+	}	
+}
 class Ship {
 	constructor (canvas) {
 		this.width = 30;
