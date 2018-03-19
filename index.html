@@ -35,7 +35,7 @@ class Ship {
 	update (ms) {
 		this.x += this.vx * ms;
 		this.y += this.vy * ms;
-		this.vy -= (this.thrust * 0.01);
+		this.vy -= (this.thrust * 0.001);
 	}
 }
 class Asteroids {
