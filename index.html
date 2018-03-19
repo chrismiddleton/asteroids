@@ -16,12 +16,13 @@ class LaserShot {
 	constructor (x, y) {
 		this.x = x;
 		this.y = y;
-		this.height = 8;
+		this.height = 10;
 	}
 	draw (context) {
 		context.beginPath();
 		context.moveTo(this.x, this.y);
 		context.lineTo(this.x, this.y - this.height);
+		context.lineWidth = 5;
 		context.strokeStyle = 'red';
 		context.stroke();
 	}
