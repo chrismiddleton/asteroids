@@ -10,26 +10,27 @@ canvas {
 </head>
 <body>
 Asteroids
-<canvas id='canvas' width='600' height='400'></canvas>
+<canvas id='asteroids-canvas' width='600' height='400'></canvas>
 <script>
 class Asteroids {
-	constructor (canvas) {
-		this.canvas = canvas;
+	constructor (theCanvas) {
+		this.canvas = theCanvas;
 		// the context is an object containing methods for drawing on the canvas
 		// it is separate from the canvas because you can also have a 3d context
-		this.context = canvas.getContext('2d');
+		this.context = theCanvas.getContext('2d');
 		// calling .bind() on a function causes the function to have
 		// the given `this` value when it is run
 		// Otherwise, if we just said (this.animate),
 		// then the value of `this` would just be the window itself.
 		// this.animate() <--- causes the value of `this` inside
-		requestAnimationFrame(this.animate.bind(this));
+		var self = this;
+		requestAnimationFrame(this.animate.bind(self));
 	}
 	animate () {
 		
 	}
 }
-var asteroids = new Asteroids(document.getElementById('canvas'));
+var asteroids = new Asteroids(document.getElementById('asteroids-canvas'));
 </script>
 </body>
 </html>
