@@ -19,14 +19,14 @@ class Ship {
 		this.x = Math.floor(canvas.width / 2);
 		this.y = Math.floor(canvas.height / 2) - Math.floor(this.height / 2);
 		this.vx = 0; // pixels per ms
-		this.vy = -1; // pixels per ms
+		this.vy = -0.1; // pixels per ms
 		this.thrusting = false;
 	}
 	draw (context) {
 		context.beginPath();
-		context.moveTo(this.x, this.y);
-		context.lineTo(this.x + Math.floor(this.width / 2), this.y + this.height);
-		context.lineTo(this.x - Math.floor(this.width / 2), this.y + this.height);
+		context.moveTo(Math.floor(this.x), Math.floor(this.y));
+		context.lineTo(Math.floor(this.x + this.width / 2), Math.floor(this.y + this.height));
+		context.lineTo(Math.floor(this.x - this.width / 2), Math.floor(this.y + this.height));
 		context.closePath();
 		context.fillStyle = 'lightgray';
 		context.fill();
