@@ -11,13 +11,21 @@ canvas {
 <body>
 Asteroids
 <canvas id='canvas' width='600' height='400'></canvas>
+<canvas id='canvas2' width='600' height='400'></canvas>
 <script>
+/*
+same effect as:
+function Asteroids (canvas) {
+	this.canvas = canvas;
+}
+*/
 class Asteroids {
 	constructor (canvas) {
 		this.canvas = canvas;
 	}
 }
 var asteroids = new Asteroids(document.getElementById('canvas'));
+var asteroids2 = new Asteroids(document.getElementById('canvas2'));
 </script>
 </body>
 </html>
