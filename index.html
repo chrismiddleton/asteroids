@@ -49,6 +49,10 @@ class Ship {
 		context.fillStyle = 'lightgray';
 		context.fill();
 	}
+	fireLaser () {
+		var laserShot = new LaserShot(this.x, this.y);
+		return laserShot;
+	}
 	update (ms) {
 		this.x += this.vx * ms;
 		this.y += this.vy * ms;
@@ -62,6 +66,7 @@ class Asteroids {
 		// it is separate from the canvas because you can also have a 3d context
 		this.context = theCanvas.getContext('2d');
 		this.ship = new Ship(theCanvas);
+		this.entities = [this.ship];
 		window.addEventListener('keydown', this.onKeyDown.bind(this));
 		window.addEventListener('keyup', this.onKeyUp.bind(this));
 		// calling .bind() on a function causes the function to have
@@ -82,8 +87,10 @@ class Asteroids {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.context.fillStyle = 'black';
 		this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-		// draw items in the game
-		this.ship.draw(this.context);
+		// draw entities in the game
+		for (var i = 0; i < this.entities.length; i++) {
+			this.entities[i].draw(this.context);
+		}
 	}
 	onKeyDown (event) {
 		console.log(event.keyCode);
@@ -96,10 +103,15 @@ class Asteroids {
 	onKeyUp (event) {
 		if (event.keyCode === 38 || event.keyCode === 40) {
 			this.ship.thrust = 0;
+		} else if (event.keyCode === 32) { // space
+			var laserShot = this.ship.fireLaser();
+			this.entities.push(laserShot);
 		}
 	}
 	update () {
-		this.ship.update(15);
+		for (var i = 0; i < this.entities.length; i++) {
+			this.entities[i].update(15);
+		}
 	}
 }
 var asteroids = new Asteroids(document.getElementById('asteroids-canvas'));
